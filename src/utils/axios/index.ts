@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import type { StandardAxiosInstance, StandardResponse } from './type';
 
-export { StandardResponse, StandardPromise } from './type';
+export type { StandardResponse, StandardPromise } from './type';
 
 const codeMessage: Record<number, string> = {
   200: '服务器成功返回请求的数据。',
@@ -23,42 +23,42 @@ const codeMessage: Record<number, string> = {
 };
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL ?? '',
 }) as StandardAxiosInstance;
 
 instance.interceptors.request.use(
-  (config) => {
-    config.paramsSerializer = (params) => {
-      return qs.stringify(params, { indices: false });
-    };
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
+    (config) => {
+      config.paramsSerializer = (params) => {
+        return qs.stringify(params, { indices: false });
+      };
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    },
 );
 instance.interceptors.response.use(
-  (value: { data: StandardResponse }) => {
-    if (value.data && value.data.result) {
-      return value.data;
-    }
-    return Promise.reject(value);
-  },
-  (error) => {
-    if (error.response) {
-      if (error.response && error.response.status) {
-        const { status, statusText, data } = error.response;
-        const errorText = codeMessage[status] || statusText;
-        const message = data && data.message ? data.message : data;
-
-        return Promise.reject(new Error(error.massage || `Request error ${status}: ${message}`));
-      } if (!error.response) {
-        return Promise.reject(new Error(error.massage || 'Network anomaly'));
+    (value: { data: StandardResponse }) => {
+      if (value.data && value.data.result) {
+        return value.data;
       }
-      return Promise.resolve({ data: { result: false } });
-    }
-    return Promise.reject(new Error(error.massage || 'UNKNOWN ERROR'));
-  },
+      return Promise.reject(value);
+    },
+    (error) => {
+      if (error.response) {
+        if (error.response && error.response.status) {
+          const { status, statusText, data } = error.response;
+          const errorText = codeMessage[status] || statusText;
+          const message = data && data.message ? data.message : data;
+
+          return Promise.reject(new Error(error.message || `Request error ${status}: ${errorText} ${message}`));
+        } if (!error.response) {
+          return Promise.reject(new Error(error.message || 'Network anomaly'));
+        }
+        return Promise.resolve({ data: { result: false } });
+      }
+      return Promise.reject(new Error(error.message || 'UNKNOWN ERROR'));
+    },
 );
 
 export default instance;
