@@ -1,0 +1,19 @@
+.div {
+  height: 36px;
+  width: 100%;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 36px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  text-align: center;
+}
+
+.divH40 {
+  color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
