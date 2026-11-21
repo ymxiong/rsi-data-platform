@@ -1,6 +1,6 @@
-// import { selectRandomColor } from '@/utils/design/Color';
-// import { Point } from '@/utils/design/Point';
-// import { randomString } from '@/utils/random';
+import { selectRandomColor } from '@/utils/design/Color';
+import { Point } from '@/utils/design/Point';
+import { randomString } from '@/utils/random';
 import { ElementState, LinkState, ViewState, VisualToolbarConfig } from '@horsecoder/visual-core';
 
 export const setView = (visualDiagramRef: any, viewState: ViewState) => {
