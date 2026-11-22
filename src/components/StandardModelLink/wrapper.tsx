@@ -7,13 +7,14 @@ import StandardModelLinkComponent from './index';
 /**
  * 组件逻辑: 标准模型连接
  */
-const StandardModelLinkWrapper: React.FC<StandardModelLinkWrapperProps> = () => {
+const StandardModelLinkWrapper: React.FC<StandardModelLinkWrapperProps> = (props) => {
   /*
    * 前置代码数据区域
    * 自定义代码区域
    * [YOUR CODE HERE]
    */
 
+  console.log(props)
 
   /*
    * [END OF YOUR CODE]

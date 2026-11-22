@@ -65,8 +65,8 @@ const StandardModelEntityTitleWrapper: React.FC<StandardModelEntityTitleWrapperP
     useEffect(() => {
       const { color } = element.state;
       setter.setBackgroundColor(color ? `linear-gradient(to right, ${hex2Rgba(color)}, ${hex2Rgba(color, 0.8)}, ${hex2Rgba(color, 0.5)})`:'#fff');
-      setter.setTitle(modelVisual.model.modelTitle);
-    }, [element.state, modelVisual.model.modelTitle, setter])
+      setter.setTitle(modelVisual.model?.modelTitle);
+    }, [element.state, modelVisual.model?.modelTitle, setter])
 
   /*
    * [END OF YOUR CODE]

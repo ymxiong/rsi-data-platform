@@ -1,5 +1,5 @@
 .div {
-  height: 36px;
+  height: 55px;
   width: 100%;
   overflow: hidden;
   font-size: 15px;
@@ -15,5 +15,6 @@
   color: white;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding: 10px;
 }
 
