@@ -1,5 +1,5 @@
-'use client';
 import React, { useEffect, useMemo, useRef } from 'react';
+import { Button } from 'antd';
 import styles from './index.module.css';
 import type { LoginProps } from './types';
 
@@ -13,8 +13,10 @@ import {
 } from '@horsecoder/visual-core';
 import StandardModelEntityWrapper from '@/components/StandardModelEntity/wrapper';
 import StandardModelLinkWrapper from '@/components/StandardModelLink/wrapper';
-import { setView } from './handler/handler/diagramHandler';
+import { getView, refreshCanvasLocked, refreshElementLocked, setView } from './handler/handler/diagramHandler';
+
 import { first_test } from './test/first_test';
+import { flowRun } from '@/src/flows/com.horsecoder.common.whuTalent.dataTesting.core/Run';
 
 
 /**
@@ -29,15 +31,11 @@ const LoginPage: React.FC<LoginProps> = () => {
   // 内部数据: 工具栏配置(toolbarConfig)
   const toolbarConfig: VisualToolbarConfig = useMemo(() => [], []);
 
-  useEffect(()=>{
-
-    if(diagramRef.current) {
-      setView(diagramRef, {
-        
-        "id": "horsecoder",
-        "elements": first_test,
-        "links": []
-    })};
+  useEffect(() => {
+    if (diagramRef.current) {
+      refreshCanvasLocked(diagramRef, false);
+      setView(diagramRef, first_test);
+    };
   }, [])
 
 
@@ -49,8 +47,8 @@ const LoginPage: React.FC<LoginProps> = () => {
         model: {
           component: StandardModelEntityWrapper,
           minSize: {
-            width: 162,
-            height: 65,
+            width: 100,
+            height: 55,
           },
         },
       },
@@ -86,6 +84,19 @@ const LoginPage: React.FC<LoginProps> = () => {
 
   return (
     <>
+      <div
+        className={styles.div}
+      >
+        <Button
+          className={styles.divButton0}
+          type="primary"
+          onClick={()=>{
+            flowRun({structure: JSON.stringify(getView(diagramRef))})
+          }}
+        >
+          {`运行`}
+        </Button>
+      </div>
       <VisualDiagram
         // className={styles.divDiv0}
         ref={diagramRef}
