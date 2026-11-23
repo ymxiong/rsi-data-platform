@@ -17,6 +17,7 @@ import { getView, refreshCanvasLocked, refreshElementLocked, setView } from './h
 
 import { first_test } from './test/first_test';
 import { flowRun } from '@/src/flows/com.horsecoder.common.whuTalent.dataTesting.core/Run';
+import { user_favorites_display } from './test/user_favorites_display';
 
 
 /**
@@ -34,7 +35,7 @@ const LoginPage: React.FC<LoginProps> = () => {
   useEffect(() => {
     if (diagramRef.current) {
       refreshCanvasLocked(diagramRef, false);
-      setView(diagramRef, first_test);
+      setView(diagramRef, user_favorites_display);
     };
   }, [])
 

@@ -20,17 +20,9 @@ const nextConfig: NextConfig = {
 
     return [
       {
-        source: "/mall-dialogue/:path*",
-        destination: "http://127.0.0.1:30432/:path*",
-      },
-      {
-        source: "/app-im/:path*",
-        destination: "http://127.0.0.1:41229/:path*",
-      },
-      {
-        source: "/horsecoder-storage/:path*",
-        destination: "http://192.168.3.221:10104/:path*",
-      },
+        source: "/dataTesting-core/:path*",
+        destination: "http://127.0.0.1:30845/:path*",
+      }
     ];
   },
 };
