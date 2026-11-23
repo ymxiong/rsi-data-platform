@@ -3,14 +3,18 @@ import type { StandardPromise } from '@/utils/axios';
 
 /**
  * 入参明细:
+ * structure 结构
  */
 export interface FlowRunParams {
+  structure: string;
 }
 
 /**
  * 出参明细:
+ * result 结果
  */
 export interface FlowRunResults {
+  result: string;
 }
 
 /**
